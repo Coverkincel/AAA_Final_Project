@@ -16,15 +16,16 @@ def order(pizza_type: str, delivery: bool):
     """Готовит и доставляет пиццу"""
     pizza_classes = {"margherita": Margherita,
                      "pepperoni": Pepperoni, "hawaiian": Hawaiian}
-    pizza = pizza_classes.get(pizza_type.lower())()
-    if pizza:
+
+    if (pizza_type.lower() in pizza_classes):
+        pizza = pizza_classes.get(pizza_type.lower())()
         bake(pizza)
         if delivery:
             deliver(pizza)
         else:
             pickup(pizza)
     else:
-        print("Извините, данный вид пиццы недоступен.")
+        print("Извините, такой пиццы нет. Выберите пиццу из меню)")
 
 
 @cli.command()
